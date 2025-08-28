@@ -1,2 +1,2 @@
-# Amazon_Sales_2025_Analysis
+# Tableau Sandbox
 Analyse of Amazon sales with Python and Tableau for visualization
