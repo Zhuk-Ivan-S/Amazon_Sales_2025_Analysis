@@ -16,7 +16,10 @@ print(df.dtypes)
 # Predictions and situation on market
 # Than make some predictions for Total Sales of different categories and preparing for visualization with Tableau
 # Total Sales average group by Categories
-
+df['Date'] = pd.to_datetime(df['Date'], format='%d-%m-%y', errors = 'coerce')
+df['Date'] = df['Date'].dt.strftime('%Y-%m-%d')
+print(df['Date'])
+df.to_csv('../data/date_for_Tableau.csv')
 # change datatime
 df['Month'] = pd.to_datetime(df['Date']).dt.month
 # create list of predictions
@@ -34,7 +37,7 @@ for category in df['Category'].unique():
     predictions.append({'Category':category,'Predict_Total_Sales_next_month':pred})
 pred_df = pd.DataFrame(predictions).sort_values(by='Predict_Total_Sales_next_month',ascending=False)
 pred_df = pred_df.rename(columns={'Predict_Total_Sales_next_month':'Total Sales'})
-pred_df['Month'] = 13
+pred_df['Month'] = 5
 print(pred_df.head())
 avg_sales = df.groupby(['Category','Month'])['Total Sales'].mean().reset_index()
 print(avg_sales)
